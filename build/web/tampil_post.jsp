@@ -2,6 +2,7 @@
     Document   : tampil_post.jsp
     Created on : Mar 25, 2024, 10:32:21 PM
     Author     : En Tay
+    Description: Menampilkan data POST yang dikirimkan dair method_post.jsp
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
