@@ -1,7 +1,6 @@
 <%-- 
     Document   : form_insert2.jsp
-    Created on : Apr 2, 2024, 3:20:15 PM
-    Author     : Lenovo
+    Description: Form untuk input data yang akan diproses insert2_mahasiswa.jsp
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

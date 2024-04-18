@@ -4,11 +4,16 @@
     Description: Menambahkan record baru ke tabel mahasiswa berdasarkan data yang dikirimkan dari form_insert.jsp
 --%>
 
+<%-- bagian deklarasi & import --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.sql.*" %>
+
+<%-- bagian pengolahan dan persiapan data --%>
 <%
+    // DEKLARASI OBJEK DAN VARIABEL
     Connection connection = null;
     String hasil = "";
+        
     try {
         String connectionURL = "jdbc:mysql://localhost/test";
 
@@ -16,7 +21,6 @@
         connection = DriverManager.getConnection(connectionURL, "root", "");
 
         if (!connection.isClosed()) {
-
             // prepare select statement
             String sql = "INSERT INTO mahasiswa (nim,nama,nilai) values (?,?,?)";
             PreparedStatement st = connection.prepareStatement(sql);
@@ -31,12 +35,16 @@
         hasil = "Data gagal disimpan: " + ex;
     }
 %>
+<%-- DOKUMEN HTML --%>
 <!DOCTYPE html>
 <html>
+    <%-- DOKUMEN HTML: HEAD --%>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Data Baru</title>
+
     </head>
+    <%-- DOKUMEN HTML: BODY --%>
     <body>
         NIM: <%=request.getParameter("nim")%><br>
         Nama: <%=request.getParameter("nama")%><br>

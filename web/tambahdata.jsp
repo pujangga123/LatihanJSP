@@ -1,7 +1,6 @@
 <%-- 
-    Document   : insert_mahasiswa.jsp
-    Author     : En Tay
-    Description: Menambahkan record baru ke tabel mahasiswa berdasarkan data yang dikirimkan dari form_insert.jsp
+    JSP execute update query mysql
+    Pastikan Anda sudah menambahkan Mysql Connector di Library
 --%>
 
 <%-- bagian deklarasi & import --%>
@@ -16,17 +15,17 @@
         
     try {
         String connectionURL = "jdbc:mysql://localhost/test";
-
         Class.forName("com.mysql.jdbc.Driver");
         connection = DriverManager.getConnection(connectionURL, "root", "");
 
         if (!connection.isClosed()) {
+
             // prepare select statement
             String sql = "INSERT INTO mahasiswa (nim,nama,nilai) values (?,?,?)";
             PreparedStatement st = connection.prepareStatement(sql);
-            st.setString(1, request.getParameter("nim"));
-            st.setString(2, request.getParameter("nama"));
-            st.setInt(3, Integer.parseInt(request.getParameter("nilai")));
+            st.setString(1, "33333");
+            st.setString(2, "JOKO");
+            st.setInt(3, 99);
             st.executeUpdate();
         }
         connection.close();
