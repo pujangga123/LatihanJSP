@@ -44,9 +44,7 @@
 
     </head>
     <%-- DOKUMEN HTML: BODY --%>
-    <body>
-        NIM: <%=request.getParameter("nim")%><br>
-        Nama: <%=request.getParameter("nama")%><br>
+    <body>        
         <%=hasil%><br>
         <a href="index.html">Kembali ke halaman depan</a>
     </body>
