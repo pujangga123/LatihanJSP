@@ -1,4 +1,4 @@
-package classes;
+package ;
 
 import java.sql.*;
 
@@ -6,15 +6,20 @@ public class Mahasiswa {
 
     public String nim;
     public String nama;
-    public Integer nilai;
+    public String angkatan;
+    public Double ipk;
+    public Date lahirTanggal;
+    public String lahirTempat;
+    public String jurusan;
+
 
     public Mahasiswa() {
         this.nim = "";
         this.nama = "";
-        this.nilai = 0;
+        this.ipk = 0.0;
     }
 
-    public Boolean baca(String nim) {
+    public void baca(String nim) {
         // deklarasi variable yang bisa diakses di seluruh halaman
         Connection connection = null;
         ResultSet rs = null;
@@ -29,17 +34,22 @@ public class Mahasiswa {
                 String sql = "SELECT * FROM mahasiswa";
                 PreparedStatement st = connection.prepareStatement(sql);
                 rs = st.executeQuery(sql);
+                
+                if(rs.next()) {
+                    this.nim = rs.getString("nim");
+                    this.nama = rs.getString("nama");
+                    this.ipk = rs.getDouble("ipk");
+                }
+                
             }
-            return true;
         } catch (Exception ex) {
-            return false;
+            System.out.println("Error "+ex.toString());
         }
     }
 
-    public Boolean tambah() {
+    public void tambah() {
         // deklarasi variable yang bisa diakses di seluruh halaman
         Connection connection = null;
-        ResultSet rs = null;
 
         try {
             String connectionURL = "jdbc:mysql://localhost/test";
@@ -48,17 +58,16 @@ public class Mahasiswa {
 
             if (!connection.isClosed()) {
                 // prepare select statement
-                String sql = "INSERT INTO mahasiswa (nim,nama,nilai) values (?,?,?)";
+                String sql = "INSERT INTO mahasiswa (nim,nama,ipk) values (?,?,?)";
                 PreparedStatement st = connection.prepareStatement(sql);
                 st.setString(1, this.nim);
                 st.setString(2, this.nama);
-                st.setInt(3, this.nilai);
+                st.setDouble(3, this.ipk);
                 st.executeUpdate();
             }
             connection.close();
-            return true;
         } catch (Exception ex) {
-            return false;
+            //
         }
     }
 
@@ -68,7 +77,7 @@ public class Mahasiswa {
     // password/database) maka perubahan harus dilakukan di banyak bagian.
     // Untuk mengatasi masalah ini, kita membuat class DatabaseTest, sehingga
     // setting dan perubahan konfigurasi database dilakukan di satu tempat.
-    public Boolean hapus() {
+    public void hapus() {
         Connection connection = null;
         try {
             connection = DatabaseTest.connect();
@@ -81,9 +90,7 @@ public class Mahasiswa {
                 st.executeUpdate();
             }
             connection.close();
-            return true;
         } catch (Exception ex) {
-            return false;
         }
     }
 }

@@ -49,7 +49,7 @@
                     out.println("<tr>"
                     + "<td>"+rs.getString("nim")+"</td>"
                     + "<td>"+rs.getString("nama")+"</td>"
-                    + "<td>"+rs.getString("nilai")+"</td>"
+                    + "<td>"+rs.getDouble("ipk")+"</td>"
                     + "<td><a href='delete_mahasiswa.jsp?nim="+rs.getString("nim")+"'>hapus</a><td>"
                     + "</tr>");
                 }

@@ -1,7 +1,5 @@
 <%-- 
-    Document   : show_mahasiswa.jsp
-    Created on : Apr 11, 2024, 9:20:28 AM
-    Author     : En Tay
+    Document   : show2_mahasiswa.jsp
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -43,17 +41,17 @@
                 <th>Nilai</th>
                 <th></th>
             </tr>
-            <%   
-                // looping data untuk menampilkan data (rs) ke bentuk tabel
-                while(rs.next()) {
-                    out.println("<tr>"
-                    + "<td>"+rs.getString("nim")+"</td>"
-                    + "<td>"+rs.getString("nama")+"</td>"
-                    + "<td>"+rs.getDouble("ipk")+"</td>"
-                    + "<td><a href='delete_mahasiswa.jsp?nim="+rs.getString("nim")+"'>hapus</a><td>"
-                    + "</tr>");
-                }
-            %>
+            <%  while(rs.next()) { %>
+                    <tr>
+                        <td><%=rs.getString("nim")%></td>
+                        <td><%=rs.getString("nama")%></td>
+                        <td><%=rs.getDouble("ipk")%></td>
+                        <td>
+                            <a href='edit2_mahasiswa.jsp?nim=<%=rs.getString("nim")%>'>edit</a>
+                            <a href='delete2_mahasiswa.jsp?nim=<%=rs.getString("nim")%>'>hapus</a>
+                        <td>
+                    </tr>
+            <% } %>
         </table>
     </body>
 </html>

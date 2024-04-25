@@ -5,19 +5,18 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="classes.Mahasiswa"%>
+<%@page import="kampus.Mahasiswa" %>
+<%@page import="kampus.Test" %>
 <%
+    Test t = new Test();
+    
     // inisialisasi objek
     Mahasiswa mahasiswa = new Mahasiswa();
     mahasiswa.nim = request.getParameter("nim");
     mahasiswa.nama = request.getParameter("nama");
-    mahasiswa.nilai = Integer.parseInt(request.getParameter("nilai"));
+    mahasiswa.ipk = Double.parseDouble(request.getParameter("ipk"));
     String hasil = "";
-    if (mahasiswa.tambah()) {
-        hasil = "Data berhasil ditambahkan";
-    } else {
-        hasil = "Data GAGAL disimpan";
-    }
+    mahasiswa.tambah();
 
 %>
 <!DOCTYPE html>

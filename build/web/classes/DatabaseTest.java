@@ -1,5 +1,5 @@
 
-package classes;
+package kampus;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
