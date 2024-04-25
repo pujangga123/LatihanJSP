@@ -38,7 +38,7 @@
             <tr>
                 <th>NIM</th>
                 <th>Nama</th>
-                <th>Nilai</th>
+                <th>IPK</th>
                 <th></th>
             </tr>
             <%  while(rs.next()) { %>

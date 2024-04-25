@@ -6,10 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="kampus.Mahasiswa" %>
-<%@page import="kampus.Test" %>
 <%
-    Test t = new Test();
-    
     // inisialisasi objek
     Mahasiswa mahasiswa = new Mahasiswa();
     mahasiswa.nim = request.getParameter("nim");

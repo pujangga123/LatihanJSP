@@ -1,2 +1,3 @@
 folder tempat file class disimpan.
-Pastikan class diset menggunakan nama package 'classes'
+
+copy folder ini jika package akan digunakan di project lain.

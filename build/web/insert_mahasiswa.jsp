@@ -22,11 +22,11 @@
 
         if (!connection.isClosed()) {
             // prepare select statement
-            String sql = "INSERT INTO mahasiswa (nim,nama,nilai) values (?,?,?)";
+            String sql = "INSERT INTO mahasiswa (nim,nama,ipk) values (?,?,?)";
             PreparedStatement st = connection.prepareStatement(sql);
             st.setString(1, request.getParameter("nim"));
             st.setString(2, request.getParameter("nama"));
-            st.setInt(3, Integer.parseInt(request.getParameter("nilai")));
+            st.setDouble(3, Double.parseDouble(request.getParameter("nilai")));
             st.executeUpdate();
         }
         connection.close();

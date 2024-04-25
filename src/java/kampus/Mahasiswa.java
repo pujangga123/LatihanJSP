@@ -1,4 +1,4 @@
-package kampus;
+package kampus;  // rubah nama paket sesuai dengan paket yang Anda miliki
 
 import java.sql.*;
 

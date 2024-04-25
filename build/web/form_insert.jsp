@@ -16,7 +16,7 @@
         <form action="insert_mahasiswa.jsp" method="post" >
             NIM : <input name="nim"><br>
             Nama : <input name="nama"><br>
-            Nilai : <input name="nilai"><br>
+            Nilai : <input name="ipk"><br>
             <button type="submit">Simpan</button>
         </form>
         <a href="index.html">Kembali ke halaman depan</a>
