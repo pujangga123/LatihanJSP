@@ -12,7 +12,7 @@
     mahasiswa.nim = request.getParameter("nim");
     mahasiswa.nama = request.getParameter("nama");
     mahasiswa.ipk = Double.parseDouble(request.getParameter("ipk"));
-    String hasil = "";
+    String hasil = "Berhasil ditambahkan";
     mahasiswa.tambah();
 
 %>
