@@ -3,11 +3,9 @@ package kampus;  // rubah nama paket sesuai dengan paket yang Anda miliki
 import java.sql.*;
 
 public class Mahasiswa {
-
     public String nim;
     public String nama;
     public Double ipk;
-    
 
     public Mahasiswa() {
         this.nim = "";
@@ -27,8 +25,9 @@ public class Mahasiswa {
 
             if (!connection.isClosed()) {
                 // prepare select statement
-                String sql = "SELECT * FROM mahasiswa";
+                String sql = "SELECT * FROM mahasiswa where nim=?";
                 PreparedStatement st = connection.prepareStatement(sql);
+                st.setString(1, nim);
                 rs = st.executeQuery(sql);
                 
                 if(rs.next()) {

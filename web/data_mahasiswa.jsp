@@ -4,15 +4,15 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.sql.*" %>
+<%@page import="kampus.DatabaseTest" %>
 <%
     // deklarasi variable yang bisa diakses di seluruh halaman
     Connection connection = null;    
     ResultSet rs = null; // objek untuk menampung hasil query
     
     try {
-        String connectionURL = "jdbc:mysql://localhost/test";
-        Class.forName("com.mysql.jdbc.Driver");
-        connection = DriverManager.getConnection(connectionURL, "root", "");
+        
+        connection = DatabaseTest.connect();
 
         if (!connection.isClosed()) {
             // prepare select statement

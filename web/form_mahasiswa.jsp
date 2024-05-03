@@ -15,14 +15,25 @@
     
     if (mode==null) {
         mode = "insert";    
-    } else if (mode.equals("insert")) {
+    } else if (mode.equals("insert")) { // operasi INSERT
         mahasiswa.nim = request.getParameter("nim");
         mahasiswa.nama = request.getParameter("nama");
         mahasiswa.ipk = Double.parseDouble(request.getParameter("ipk"));
         mahasiswa.tambah();
-        mode = "view";
+        mode = "update";
         hasil = "Berhasil ditambahkan";
+    } else if (mode.equals("update")) {
+        mahasiswa.nim = request.getParameter("nim");
+        mahasiswa.nama = request.getParameter("nama");
+        mahasiswa.ipk = Double.parseDouble(request.getParameter("ipk"));
+        mahasiswa.update();
+        mode = "update";
+        hasil = "Berhasil disimpan";
+    } else if (mode.equals("update")) {
+        mahasiswa.baca(request.getParameter("nim"));        
     }
+    
+
 
 %>
 <!DOCTYPE html>
@@ -35,9 +46,9 @@
         <h1>Form Data</h1>
         <form action="form_mahasiswa.jsp" method="post" >
             <input value="<%=mode%>" name="mode">
-            NIM : <input name="nim"><br>
-            Nama : <input name="nama"><br>
-            IPK : <input name="ipk"><br>
+            NIM : <input name="nim" value="<%=mahasiswa.nim %>"><br>
+            Nama : <input name="nama" value="<%=mahasiswa.nama %>"><br>
+            IPK : <input name="ipk" value="<%=mahasiswa.ipk %>"><br>
             <button type="submit">Simpan</button>
         </form>
         <%=hasil%>
