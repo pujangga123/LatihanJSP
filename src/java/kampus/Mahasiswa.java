@@ -3,6 +3,7 @@ package kampus;  // rubah nama paket sesuai dengan paket yang Anda miliki
 import java.sql.*;
 
 public class Mahasiswa {
+
     public String nim;
     public String nama;
     public String alamat;
@@ -12,6 +13,7 @@ public class Mahasiswa {
     public String status;
     public String usersId;
     private Double ipk;
+    private String errMsg = "";
 
     public Mahasiswa() {
         this.nim = "";
@@ -39,8 +41,8 @@ public class Mahasiswa {
                 PreparedStatement st = connection.prepareStatement(sql);
                 st.setString(1, nim);
                 rs = st.executeQuery();
-                
-                if(rs.next()) {
+
+                if (rs.next()) {
                     this.nim = rs.getString("nim");
                     this.nama = rs.getString("nama");
                     this.alamat = rs.getString("alamat");
@@ -50,10 +52,10 @@ public class Mahasiswa {
                     this.usersId = rs.getString("usersId");
                     this.ipk = rs.getDouble("ipk");
                 }
-                
+
             }
         } catch (Exception ex) {
-            System.out.println("Error "+ex.toString());
+            this.errMsg = ex.toString();
         }
     }
 
@@ -62,7 +64,7 @@ public class Mahasiswa {
         Connection connection = null;
 
         try {
-            
+
             connection = DatabaseTest.connect();
 
             if (!connection.isClosed()) {
@@ -75,7 +77,7 @@ public class Mahasiswa {
                 st.setString(3, this.alamat);
                 st.setString(4, this.angkatan);
                 st.setDate(5, this.lahirTanggal);
-                st.setString(6, this.lahirTempat );
+                st.setString(6, this.lahirTempat);
                 st.setString(7, this.status);
                 st.setDouble(8, this.ipk);
                 st.executeUpdate();
@@ -83,13 +85,14 @@ public class Mahasiswa {
                 return true;
             }
             connection.close();
+            this.errMsg = "Koneksi ke database gagal";
             return false;
         } catch (Exception ex) {
-            System.out.println("Error "+ex.toString());
+            this.errMsg = ex.toString();
             return false;
         }
     }
-    
+
     public boolean update() {
         Connection connection = null;
         try {
@@ -100,8 +103,8 @@ public class Mahasiswa {
                 String sql = "UPDATE mahasiswa SET nama=?, alamat=?, angkatan=?, lahirTanggal=?, lahirTempat=?, status=?"
                         + "WHERE nim=?";
                 PreparedStatement st = connection.prepareStatement(sql);
-                st.setString(1, this.nama);                
-                st.setString(2, this.alamat);                
+                st.setString(1, this.nama);
+                st.setString(2, this.alamat);
                 st.setString(3, this.angkatan);
                 st.setDate(4, this.lahirTanggal);
                 st.setString(5, this.lahirTempat);
@@ -113,18 +116,23 @@ public class Mahasiswa {
                 return true;
             }
             connection.close();
+            this.errMsg = "Koneksi ke database gagal";
             return false;
         } catch (Exception ex) {
-            System.out.println("Error "+ex.toString());
+            this.errMsg = ex.toString();
             return false;
         }
     }
-    
+
     public void rekalkulasiIpk() {
         // belum diisi
     }
-    
+
     public Double getIpk() {
         return this.ipk;
+    }
+
+    public String getErrMsg() {
+        return this.errMsg;
     }
 }
