@@ -12,22 +12,31 @@
     Mahasiswa mahasiswa = new Mahasiswa();
     
     String mode = request.getParameter("mode");
-    
     if (mode==null) {
         mode = "insert";    
     } else if (mode.equals("insert")) { // operasi INSERT
         mahasiswa.nim = request.getParameter("nim");
         mahasiswa.nama = request.getParameter("nama");
+        mahasiswa.alamat = request.getParameter("alamat");
+        mahasiswa.angkatan = request.getParameter("angkatan");
+        mahasiswa.lahirTanggal = null;
+        mahasiswa.lahirTempat = request.getParameter("lahirTempat");
         mahasiswa.tambah();
         mode = "update";
         hasil = "Berhasil ditambahkan";
     } else if (mode.equals("update")) {
+        mahasiswa.baca(request.getParameter("nim"));        
         mahasiswa.nim = request.getParameter("nim");
         mahasiswa.nama = request.getParameter("nama");
+        mahasiswa.alamat = request.getParameter("alamat");
+        mahasiswa.angkatan = request.getParameter("angkatan");
+        mahasiswa.lahirTanggal = null;
+        mahasiswa.lahirTempat = request.getParameter("lahirTempat");
         mahasiswa.update();
         mode = "update";
         hasil = "Berhasil disimpan";
-    } else if (mode.equals("update")) {
+    } else if (mode.equals("baca")) {
+        mode = "update";
         mahasiswa.baca(request.getParameter("nim"));        
     }
     
@@ -50,10 +59,11 @@
             Angkatan: <input name="angkatan" value="<%=mahasiswa.angkatan %>"><br>
             Lahir: <input name="lahirTempat" value="<%=mahasiswa.lahirTempat %>" placeholder="Tempat">
                 <input name="lahirTanggal" value="<%=mahasiswa.lahirTanggal==null?"":mahasiswa.lahirTanggal %>" placeholder="Tanggal" type="Date"><br>
+                Status: <%=mahasiswa.status %><br>
             IPK : <input name="ipk" value="<%=mahasiswa.getIpk() %>"><br>
             <button type="submit">Simpan</button>
         </form>
         <%=hasil%>
-        <a href="index.html">Kembali ke halaman depan</a>
+        <a href="index.jsp">Kembali ke halaman depan</a>
     </body>
 </html>

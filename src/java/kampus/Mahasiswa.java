@@ -97,7 +97,7 @@ public class Mahasiswa {
 
             if (!connection.isClosed()) {
                 // prepare select statement
-                String sql = "UPDATE mahasiswa SET nama=?, alamat=?, angkatan=?, lahirTanggal=?, lahirTempat=?, usersId=?, status=?"
+                String sql = "UPDATE mahasiswa SET nama=?, alamat=?, angkatan=?, lahirTanggal=?, lahirTempat=?, status=?"
                         + "WHERE nim=?";
                 PreparedStatement st = connection.prepareStatement(sql);
                 st.setString(1, this.nama);                
@@ -106,8 +106,7 @@ public class Mahasiswa {
                 st.setDate(4, this.lahirTanggal);
                 st.setString(5, this.lahirTempat);
                 st.setString(6, this.status);
-                st.setString(7, this.usersId);
-                st.setString(8, this.nim);
+                st.setString(7, this.nim);
 
                 st.executeUpdate();
                 connection.close();
