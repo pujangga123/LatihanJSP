@@ -47,8 +47,7 @@
                         <td><%=rs.getString("nama")%></td>
                         <td><%=rs.getDouble("ipk")%></td>
                         <td>
-                            <a href='edit2_mahasiswa.jsp?nim=<%=rs.getString("nim")%>'>edit</a>
-                            <a href='delete2_mahasiswa.jsp?nim=<%=rs.getString("nim")%>'>hapus</a>
+                            <a href='form_mahasiswa.jsp?nim=<%=rs.getString("nim")%>'>edit</a>
                         <td>
                     </tr>
             <% } %>

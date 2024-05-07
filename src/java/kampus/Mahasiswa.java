@@ -5,11 +5,23 @@ import java.sql.*;
 public class Mahasiswa {
     public String nim;
     public String nama;
-    public Double ipk;
+    public String alamat;
+    public String angkatan;
+    public Date lahirTanggal;
+    public String lahirTempat;
+    public String status;
+    public String usersId;
+    private Double ipk;
 
     public Mahasiswa() {
         this.nim = "";
         this.nama = "";
+        this.alamat = "";
+        this.angkatan = "2024";
+        this.lahirTanggal = null;
+        this.lahirTempat = "";
+        this.status = "AKTIF";
+        this.usersId = "";
         this.ipk = 0.0;
     }
 
@@ -19,20 +31,23 @@ public class Mahasiswa {
         ResultSet rs = null;
 
         try {
-            String connectionURL = "jdbc:mysql://localhost/test";
-            Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection(connectionURL, "root", "");
+            connection = DatabaseTest.connect();
 
             if (!connection.isClosed()) {
                 // prepare select statement
                 String sql = "SELECT * FROM mahasiswa where nim=?";
                 PreparedStatement st = connection.prepareStatement(sql);
                 st.setString(1, nim);
-                rs = st.executeQuery(sql);
+                rs = st.executeQuery();
                 
                 if(rs.next()) {
                     this.nim = rs.getString("nim");
                     this.nama = rs.getString("nama");
+                    this.alamat = rs.getString("alamat");
+                    this.angkatan = rs.getString("angkatan");
+                    this.lahirTanggal = rs.getDate("lahirTanggal");
+                    this.lahirTempat = rs.getString("lahirTempat");
+                    this.usersId = rs.getString("usersId");
                     this.ipk = rs.getDouble("ipk");
                 }
                 
@@ -42,70 +57,75 @@ public class Mahasiswa {
         }
     }
 
-    public void tambah() {
+    public boolean tambah() {
         // deklarasi variable yang bisa diakses di seluruh halaman
         Connection connection = null;
 
         try {
-            String connectionURL = "jdbc:mysql://localhost/test";
-            Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection(connectionURL, "root", "");
+            
+            connection = DatabaseTest.connect();
 
             if (!connection.isClosed()) {
                 // prepare select statement
-                String sql = "INSERT INTO mahasiswa (nim,nama,ipk) values (?,?,?)";
+                String sql = "INSERT INTO mahasiswa (nim,nama,alamat, angkatan, lahirTanggal, lahirTempat, usersId, ipk) "
+                        + "values (?,?,?,?,?,?,?,?)";
                 PreparedStatement st = connection.prepareStatement(sql);
                 st.setString(1, this.nim);
                 st.setString(2, this.nama);
-                st.setDouble(3, this.ipk);
+                st.setString(3, this.alamat);
+                st.setString(4, this.angkatan);
+                st.setDate(5, this.lahirTanggal);
+                st.setString(6, this.lahirTempat );
+                st.setString(7, this.status);
+                st.setDouble(8, this.ipk);
                 st.executeUpdate();
+                connection.close();
+                return true;
             }
             connection.close();
+            return false;
         } catch (Exception ex) {
-            //
-        }
-    }
-
-    // melakukan data dengan cara seperti tambah() dan baca(), memiliki redudansi
-    // kode untuk membuat koneksi. Hal ini tidak efisien.
-    // Masalah lain adalah, jika ada perubahan konfigurasi database (username/
-    // password/database) maka perubahan harus dilakukan di banyak bagian.
-    // Untuk mengatasi masalah ini, kita membuat class DatabaseTest, sehingga
-    // setting dan perubahan konfigurasi database dilakukan di satu tempat.
-    public void hapus() {
-        Connection connection = null;
-        try {
-            connection = DatabaseTest.connect();
-
-            if (!connection.isClosed()) {
-                // prepare select statement
-                String sql = "DELETE FROM mahasiswa WHERE nim=?";
-                PreparedStatement st = connection.prepareStatement(sql);
-                st.setString(1, this.nim);
-                st.executeUpdate();
-            }
-            connection.close();
-        } catch (Exception ex) {
+            System.out.println("Error "+ex.toString());
+            return false;
         }
     }
     
-    public void update() {
+    public boolean update() {
         Connection connection = null;
         try {
             connection = DatabaseTest.connect();
 
             if (!connection.isClosed()) {
                 // prepare select statement
-                String sql = "UPDATE mahasiswa SET nama=?, ipk=? WHERE nim=?";
+                String sql = "UPDATE mahasiswa SET nama=?, alamat=?, angkatan=?, lahirTanggal=?, lahirTempat=?, usersId=?, status=?"
+                        + "WHERE nim=?";
                 PreparedStatement st = connection.prepareStatement(sql);
                 st.setString(1, this.nama);                
-                st.setDouble(2, this.ipk);                
-                st.setString(3, this.nim);
+                st.setString(2, this.alamat);                
+                st.setString(3, this.angkatan);
+                st.setDate(4, this.lahirTanggal);
+                st.setString(5, this.lahirTempat);
+                st.setString(6, this.status);
+                st.setString(7, this.usersId);
+                st.setString(8, this.nim);
 
                 st.executeUpdate();
+                connection.close();
+                return true;
             }
             connection.close();
+            return false;
         } catch (Exception ex) {
+            System.out.println("Error "+ex.toString());
+            return false;
         }
+    }
+    
+    public void rekalkulasiIpk() {
+        // belum diisi
+    }
+    
+    public Double getIpk() {
+        return this.ipk;
     }
 }

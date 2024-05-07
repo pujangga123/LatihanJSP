@@ -13,7 +13,8 @@ public class DatabaseTest {
     public static Connection connect() {
         try {
             Class.forName(DBDRIVER);
-            return DriverManager.getConnection(DBCONNECTION,DBUSER,DBPASS);
+            Connection conn = DriverManager.getConnection(DBCONNECTION,DBUSER,DBPASS);
+            return conn;
         }catch(Exception e) {
             return null;
         }

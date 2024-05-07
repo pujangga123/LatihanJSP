@@ -18,14 +18,12 @@
     } else if (mode.equals("insert")) { // operasi INSERT
         mahasiswa.nim = request.getParameter("nim");
         mahasiswa.nama = request.getParameter("nama");
-        mahasiswa.ipk = Double.parseDouble(request.getParameter("ipk"));
         mahasiswa.tambah();
         mode = "update";
         hasil = "Berhasil ditambahkan";
     } else if (mode.equals("update")) {
         mahasiswa.nim = request.getParameter("nim");
         mahasiswa.nama = request.getParameter("nama");
-        mahasiswa.ipk = Double.parseDouble(request.getParameter("ipk"));
         mahasiswa.update();
         mode = "update";
         hasil = "Berhasil disimpan";
@@ -48,7 +46,11 @@
             <input value="<%=mode%>" name="mode">
             NIM : <input name="nim" value="<%=mahasiswa.nim %>"><br>
             Nama : <input name="nama" value="<%=mahasiswa.nama %>"><br>
-            IPK : <input name="ipk" value="<%=mahasiswa.ipk %>"><br>
+            Alamat: <input name="alamat" value="<%=mahasiswa.alamat %>"><br>
+            Angkatan: <input name="angkatan" value="<%=mahasiswa.angkatan %>"><br>
+            Lahir: <input name="lahirTempat" value="<%=mahasiswa.lahirTempat %>" placeholder="Tempat">
+                <input name="lahirTanggal" value="<%=mahasiswa.lahirTanggal==null?"":mahasiswa.lahirTanggal %>" placeholder="Tanggal" type="Date"><br>
+            IPK : <input name="ipk" value="<%=mahasiswa.getIpk() %>"><br>
             <button type="submit">Simpan</button>
         </form>
         <%=hasil%>
