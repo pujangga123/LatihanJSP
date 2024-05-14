@@ -44,6 +44,7 @@
         <title>Insert Data ke MySql</title>
     </head>
     <body>
+
         <h1>Form Data</h1>
         <form action="form_dosen.jsp" method="post" >
             <input value="<%=mode%>" name="mode">
@@ -53,8 +54,12 @@
             
             <button type="submit">Simpan</button>
         </form>
-        <%=hasil%>
+        <a href="form_mahasiswa.jsp">Tambah</a> - 
+                <a href="index.jsp">Kembali ke halaman depan</a>
+
+            <%=hasil%>
         <%=dosen.getErrMsg() %>
-        <a href="index.jsp">Kembali ke halaman depan</a>
+
+
     </body>
 </html>

@@ -22,6 +22,7 @@
                 <tr>
                     <th>NID</th>
                     <th>Nama</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -29,10 +30,12 @@
                 <tr>
                     <td><%=row.nid%></td>
                     <td><%=row.nama%></td>
+                    <td><a href="form_dosen.jsp?mode=baca&nid=<%=row.nid%>">edit</a></td>
                 </tr>
                 <% }%>
             </tbody>
         </table>
-
+        <a href="form_dosen.jsp">Tambah</a> - 
+        <a href="index.jsp">Kembali ke halaman depan</a>
     </body>
 </html>

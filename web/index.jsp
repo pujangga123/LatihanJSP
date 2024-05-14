@@ -14,6 +14,8 @@
     <body>
         <ul>
             <li><a href="data_mahasiswa.jsp">Mahasiswa</a></li>
+            <li><a href="data_dosen.jsp">Dosen</a></li>
+
         </ul>
     </body>
 </html>

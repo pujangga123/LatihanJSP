@@ -7,11 +7,11 @@
 <%@page import="kampus.DatabaseTest" %>
 <%
     // deklarasi variable yang bisa diakses di seluruh halaman
-    Connection connection = null;    
+    Connection connection = null;
     ResultSet rs = null; // objek untuk menampung hasil query
-    
+
     try {
-        
+
         connection = DatabaseTest.connect();
 
         if (!connection.isClosed()) {
@@ -33,7 +33,6 @@
         <title>Data Mahasiswa</title>
     </head>
     <body>
-        <a href="index.html">Kembali ke halaman depan</a>
         <table>
             <tr>
                 <th>NIM</th>
@@ -41,22 +40,24 @@
                 <th>IPK</th>
                 <th></th>
             </tr>
-            <%  while(rs.next()) { %>
-                    <tr>
-                        <td><%=rs.getString("nim")%></td>
-                        <td><%=rs.getString("nama")%></td>
-                        <td><%=rs.getDouble("ipk")%></td>
-                        <td>
-                            <a href='form_mahasiswa.jsp?mode=baca&nim=<%=rs.getString("nim")%>'>edit</a>
-                        <td>
-                    </tr>
+            <%  while (rs.next()) {%>
+            <tr>
+                <td><%=rs.getString("nim")%></td>
+                <td><%=rs.getString("nama")%></td>
+                <td><%=rs.getDouble("ipk")%></td>
+                <td>
+                    <a href='form_mahasiswa.jsp?mode=baca&nim=<%=rs.getString("nim")%>'>edit</a>
+                <td>
+            </tr>
             <% } %>
         </table>
-        
-        <a href="form_mahasiswa.jsp">Tambah</a>
+
+        <a href="form_mahasiswa.jsp">Tambah</a> - 
+        <a href="index.jsp">Kembali ke halaman depan</a>
+
     </body>
 </html>
 <%  // koneksi ditutup dibagian akhir halaman, karena koneksi masih di akses di 
     // bagian BODY halaman (lewat objek rs).
-    connection.close();  
+    connection.close();
 %>

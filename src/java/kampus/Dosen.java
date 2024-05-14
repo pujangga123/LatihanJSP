@@ -20,7 +20,7 @@ public class Dosen {
     public Dosen() {
         this.nid = "";
         this.nama = "";
-        this.status = "NONAKTIF";
+        this.status = "AKTIF";
     }
 
     public boolean baca(String nid) {
