@@ -7,6 +7,8 @@ package kampus;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Dosen {
 
@@ -107,6 +109,36 @@ public class Dosen {
             //System.out.println(ex.toString());
             this.errMsg = ex.toString();
             return false; // menandakan kalau operasi GAGAL
+        }
+    }
+    
+    public static List<Dosen> getList() {
+        List<Dosen> result = new ArrayList<>();
+        
+        Connection connection = null;
+        ResultSet rs = null;
+
+        try {
+            connection = DatabaseTest.connect();
+
+            if (!connection.isClosed()) {
+                // prepare select statement
+                String sql = "SELECT * FROM dosen";
+                PreparedStatement st = connection.prepareStatement(sql);
+                rs = st.executeQuery();
+
+                while (rs.next()) {
+                    Dosen d = new Dosen();
+                    d.nid = rs.getString("nid");
+                    d.nama = rs.getString("nama");
+                    d.status  = rs.getString("status");
+                    result.add(d);
+                }
+                
+            }
+            return result;
+        } catch (Exception ex) {
+            return null;
         }
     }
 
