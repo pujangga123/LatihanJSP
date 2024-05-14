@@ -64,6 +64,7 @@
             <button type="submit">Simpan</button>
         </form>
         <%=hasil%>
+        <%=mahasiswa.getErrMsg() %>
         <a href="index.jsp">Kembali ke halaman depan</a>
     </body>
 </html>
