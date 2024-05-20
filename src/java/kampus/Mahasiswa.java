@@ -12,7 +12,7 @@ public class Mahasiswa {
     public String lahirTempat;
     public String status;
     public String usersId;
-    private Double ipk;
+    protected Double ipk;
     private String errMsg = "";
 
     public Mahasiswa() {
@@ -127,7 +127,30 @@ public class Mahasiswa {
     }
 
     public void rekalkulasiIpk() {
-        // belum diisi
+        // lakukan perhitungan IPK
+        // sementara pakai angka random dulu
+        this.ipk = Math.random() * 4;
+        
+        Connection connection = null;
+        try {
+            connection = DatabaseTest.connect();
+
+            if (!connection.isClosed()) {
+                // prepare select statement
+                String sql = "UPDATE mahasiswa SET ipk=?"
+                        + "WHERE nim=?";
+                PreparedStatement st = connection.prepareStatement(sql);
+                st.setDouble(1, this.ipk);
+                st.setString(2, this.nim);
+
+                st.executeUpdate();
+                connection.close();
+            }
+            connection.close();
+            this.errMsg = "Koneksi ke database gagal";
+        } catch (Exception ex) {
+            this.errMsg = ex.toString();
+        }
     }
 
     public Double getIpk() {
