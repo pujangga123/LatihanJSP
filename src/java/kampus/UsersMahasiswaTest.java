@@ -3,13 +3,13 @@ package kampus;
 import java.util.List;
 
 public class UsersMahasiswaTest {
-    
+
     public static void main(String[] args) {
         UsersMahasiswa um = new UsersMahasiswa();
 
         // test TAMBAH
-        um.id = "111";
-        um.tipe = "DOSEN";
+        um.id = "1111";
+        um.tipe = "SISWA";
         um.status = "AKTIF";
         if (um.tambah()) {
             System.out.println("TAMBAH OK");
@@ -27,6 +27,16 @@ public class UsersMahasiswaTest {
             System.out.println(um.getErrMsg());
         }
 
+        // set password
+        um.setPassword("123");
+
+        // test login
+        if (um.login("111", "123")) {
+            System.out.println("LOGIN OK");
+        } else {
+            System.out.println("LOGIN GAGAL");
+        }
+
         // test UPDATE
         um.status = "NONAKTIF";
         if (um.update()) {
@@ -35,14 +45,13 @@ public class UsersMahasiswaTest {
             System.out.println("UPDATE GAGAL");
             System.out.println(um.getErrMsg());
         }
-        
+
         // catak list
         System.out.println("==============================");
         List<UsersMahasiswa> daftar = UsersMahasiswa.getList();
-        for(UsersMahasiswa m: daftar) {
-            System.out.println(m.id+" "+m.getNama());
+        for (UsersMahasiswa m : daftar) {
+            System.out.println(m.id + " " + m.getNama());
         }
     }
 
-    
 }
