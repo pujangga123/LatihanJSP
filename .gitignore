@@ -9,6 +9,7 @@ nb-configuration.xml
 
 # Class Files #
 *.class
+*.java~
 
 # Package Files #
 *.jar
