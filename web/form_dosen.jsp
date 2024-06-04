@@ -1,9 +1,3 @@
-<%-- 
-    Document   : form_mahasiswa.jsp
-    Created on : Apr 2, 2024, 3:20:15 PM
-    Author     : Lenovo
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="kampus.Dosen" %>
 <%

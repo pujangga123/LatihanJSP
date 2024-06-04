@@ -1,30 +1,32 @@
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="kampus.Dosen" %>
+<%@page import="kampus.User" %>
 <%
-    List<Dosen> daftar = Dosen.getList();
+    List<User> daftar = User.getList();
 %>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Data Dosen</title>
+        <title>Data User</title>
     </head>
     <body>
         <table>
             <thead>
                 <tr>
-                    <th>NID</th>
-                    <th>Nama</th>
+                    <th>ID</th>
+                    <th>Status</th>
+                    <th>Tipe</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                <% for (Dosen row : daftar) {%>
+                <% for (User row : daftar) {%>
                 <tr>
-                    <td><%=row.nid%></td>
-                    <td><%=row.nama%></td>
-                    <td><a href="form_dosen.jsp?mode=baca&nid=<%=row.nid%>">edit</a></td>
+                    <td><%=row.id%></td>
+                    <td><%=row.status%></td>
+                    <td><%=row.tipe%></td>
+                    <td><a href="form_user.jsp?mode=baca&id=<%=row.id%>&tipe=<%=row.tipe%>">edit</a></td>
                 </tr>
                 <% }%>
             </tbody>

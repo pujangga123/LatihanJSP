@@ -26,7 +26,7 @@ public class UsersMahasiswa extends Users {
 
             if (!connection.isClosed()) {
                 // 1. sesuaikan string SQL
-                String sql = "SELECT * FROM users where id=?";
+                String sql = "SELECT * FROM users inner join mahasiswa where id=?";
                 PreparedStatement st = connection.prepareStatement(sql);
 
                 // 2. sesuaikan parameter
