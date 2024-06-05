@@ -1,13 +1,25 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="kampus.User" %>
+<%@page import="kampus.Users" %>
+<%@page import="kampus.UsersMahasiswa" %>
+<%@page import="kampus.UsersDosen" %>
+
 <%
-    User user = new User();
+    String id = "";
+    String tipe = "";
+    Users user;
     if(session.getAttribute("id")!=null) {
-        String id=(String)session.getAttribute("id");  
-        user.baca(id, "DOSEN");        
+        id=(String)session.getAttribute("id");  
+        tipe = (String)session.getAttribute("tipe");        
+        
+        if(tipe.equals("DOSEN")) {
+            user = new UsersDosen();
+        } else {
+            user = new UsersMahasiswa();
+        }
+        user.baca(id);
+
     } else {
-        String redirectURL = "login.jsp";
-        response.sendRedirect(redirectURL);
+        user = null;
     }
    %>
 <!DOCTYPE html>
@@ -17,11 +29,15 @@
         <title>Beranda: SI Kampus</title>
     </head>
     <body>
-        Halo, <%=0%>
+        <% if(id.equals("")){ %>
+            <a href="login_dosen.jsp">LOGIN</a>
+        <% } else { %>
+            Halo <%=user.getNama() %> [<%=user.id %>]
+        <% } %>
         <ul>
             <li><a href="data_mahasiswa.jsp">Mahasiswa</a></li>
             <li><a href="data_dosen.jsp">Dosen</a></li>
-            <li><a href="data_user.jsp">User</a></li>
+            <li><a href="data_userdosen.jsp">User</a></li>
 
         </ul>
     </body>

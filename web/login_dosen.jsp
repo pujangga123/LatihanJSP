@@ -3,10 +3,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Halaman Login</title>
+        <title>Login Dosen</title>
     </head>
     <body>
-        <form action="dologin.jsp" method="post">
+        <form action="dologin_dosen.jsp" method="post">
             <input name="username">
             <input name="password">
             <button>Login</button>
