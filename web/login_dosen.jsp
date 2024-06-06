@@ -8,7 +8,7 @@
     <body>
         <form action="dologin_dosen.jsp" method="post">
             <input name="username">
-            <input name="password">
+            <input name="password" type="password">
             <button>Login</button>
         </form>
         

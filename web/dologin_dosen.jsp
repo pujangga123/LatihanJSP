@@ -7,7 +7,6 @@
     if(user.login(username, password)) {
         session.setAttribute("id", username);
         session.setAttribute("tipe", "DOSEN");
-        String redirectURL = "index.jsp";
-        response.sendRedirect(redirectURL);
+        response.sendRedirect("index.jsp");
     }
 %>
