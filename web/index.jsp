@@ -37,7 +37,7 @@
         <ul>
             <li><a href="data_mahasiswa.jsp">Mahasiswa</a></li>
             <li><a href="data_dosen.jsp">Dosen</a></li>
-            <li><a href="data_userdosen.jsp">User</a></li>
+            <li><a href="data_usersdosen.jsp">User Dosen</a></li>
 
         </ul>
     </body>

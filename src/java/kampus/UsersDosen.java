@@ -54,14 +54,14 @@ public class UsersDosen extends Users {
 
             if (!connection.isClosed()) {
                 // prepare select statement
-                String sql = "SELECT nim, dosen.nama, users.status "
+                String sql = "SELECT id, dosen.nama, users.status "
                         + "FROM users inner join dosen on dosen.nid=users.id ";
                 PreparedStatement st = connection.prepareStatement(sql);
                 rs = st.executeQuery();
 
                 while (rs.next()) {
                     UsersDosen ud = new UsersDosen();
-                    ud.id = rs.getString("nim");
+                    ud.id = rs.getString("id");
                     ud.nama = rs.getString("nama");
                     ud.tipe = "DOSEN";
                     ud.status = rs.getString("status");
